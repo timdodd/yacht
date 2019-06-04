@@ -1,0 +1,19 @@
+# Eclipse
+bin/
+.classpath
+.project
+.settings/
+
+# IDEA
+.idea/
+*.iml
+out/
+
+# Log files
+*.log
+log/
+
+# Temp files
+*~
+.DS_Store
+*.swp
