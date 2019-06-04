@@ -30,6 +30,7 @@ public class Die {
 
     public Integer roll() {
         Collections.shuffle(possibleValues);
-        return possibleValues.get(0);
+        this.value = possibleValues.get(0);
+        return this.value;
     }
 }
