@@ -1,16 +1,16 @@
 package acme.yacht;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class YachtsTest {
 
 	@Test
 	public void testChoiceOnly() {
-		List<YachtResult> results = Yachts.scoreRound(Dies.withValues(1, 2, 2, 5, 5));
+		List<YachtResult> results = Yachts.options(Dies.withValues(1, 2, 2, 5, 5));
 		assertEquals(1, results.size());
 		assertEquals(YachtResultCategory.CHOICE, results.get(0).getCategory());
 		assertEquals(new Integer(15), results.get(0).getPoints());
@@ -18,7 +18,7 @@ public class YachtsTest {
 
 	@Test
 	public void testThreesAndFullHouse() {
-		List<YachtResult> results = Yachts.scoreRound(Dies.withValues(3, 3, 5, 5, 5));
+		List<YachtResult> results = Yachts.options(Dies.withValues(3, 3, 5, 5, 5));
 		assertEquals(3, results.size());
 
 		assertEquals(YachtResultCategory.FULL_HOUSE, results.get(0).getCategory());
@@ -33,7 +33,7 @@ public class YachtsTest {
 
 	@Test
 	public void testBigStraight() {
-		List<YachtResult> results = Yachts.scoreRound(Dies.withValues(3, 4, 5, 6, 2));
+		List<YachtResult> results = Yachts.options(Dies.withValues(3, 4, 5, 6, 2));
 		assertEquals(4, results.size());
 
 		assertEquals(YachtResultCategory.BIG_STRAIGHT, results.get(0).getCategory());
@@ -51,7 +51,7 @@ public class YachtsTest {
 
 	@Test
 	public void testFourOfAKind() {
-		List<YachtResult> results = Yachts.scoreRound(Dies.withValues(2, 2, 4, 2, 2));
+		List<YachtResult> results = Yachts.options(Dies.withValues(2, 2, 4, 2, 2));
 		assertEquals(2, results.size());
 
 		assertEquals(YachtResultCategory.CHOICE, results.get(0).getCategory());

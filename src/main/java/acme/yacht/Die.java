@@ -24,10 +24,6 @@ public class Die {
         this.possibleValues = Arrays.asList(possibleValues);
     }
 
-    public static Die newInstance(Integer... possibleValues) {
-        return new Die(possibleValues);
-    }
-
     public static Die newStandardDie() {
         return new Die(1, 2, 3, 4, 5, 6);
     }

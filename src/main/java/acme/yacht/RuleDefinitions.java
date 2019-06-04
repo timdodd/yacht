@@ -1,12 +1,7 @@
 package acme.yacht;
 
-import acme.yacht.filter.BigStraightPredicate;
-import acme.yacht.filter.DieValuePredicate;
 import acme.yacht.filter.FullHousePredicate;
 import acme.yacht.filter.NofAKindPredicate;
-import acme.yacht.scoring.FixedScore;
-import acme.yacht.scoring.SumOfAllDice;
-import acme.yacht.scoring.SumOfAllDiceWithDieValue;
 import acme.yacht.scoring.SumOfNofAKind;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,14 +26,14 @@ public class RuleDefinitions {
         return Arrays.asList(
                 Rule.builder()
                         .category(YachtResultCategory.BIG_STRAIGHT)
-                        .filterPredicate(new BigStraightPredicate())
-                        .scoringFunction(new FixedScore(30))
+                        .filterPredicate((dice) -> Dies.containsExactly(dice, Arrays.asList(2, 3, 4, 5, 6)))
+                        .scoringFunction((dice) -> 30)
                         .build(),
 
                 Rule.builder()
                         .category(YachtResultCategory.CHOICE)
                         .filterPredicate((dice) -> true)
-                        .scoringFunction(new SumOfAllDice())
+                        .scoringFunction(Dies::sum)
                         .build(),
 
                 Rule.builder()
@@ -50,19 +45,19 @@ public class RuleDefinitions {
                 Rule.builder()
                         .category(YachtResultCategory.FULL_HOUSE)
                         .filterPredicate(new FullHousePredicate())
-                        .scoringFunction(new SumOfAllDice())
+                        .scoringFunction(Dies::sum)
                         .build(),
 
                 Rule.builder()
                         .category(YachtResultCategory.SIXES)
-                        .filterPredicate(new DieValuePredicate(6))
-                        .scoringFunction(new SumOfAllDiceWithDieValue(6))
+                        .filterPredicate((dice) -> Dies.containsValue(dice, 6))
+                        .scoringFunction((dice) -> Dies.sumHavingDieValue(dice, 6))
                         .build(),
 
                 Rule.builder()
                         .category(YachtResultCategory.THREES)
-                        .filterPredicate(new DieValuePredicate(3))
-                        .scoringFunction(new SumOfAllDiceWithDieValue(3))
+                        .filterPredicate((dice) -> Dies.containsValue(dice, 3))
+                        .scoringFunction((dice) -> Dies.sumHavingDieValue(dice, 3))
                         .build()
         );
     }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class Yachts {
 
-    public static List<YachtResult> scoreRound(List<Die> dice) {
+    public static List<YachtResult> options(List<Die> dice) {
         return RuleDefinitions.getRules()
                 .stream()
                 .filter(rule -> rule.getFilterPredicate().test(dice))

@@ -19,7 +19,7 @@ public class SumOfNofAKind implements Function<List<Die>, Integer> {
         return counted.entrySet()
                 .stream()
                 .filter(v -> v.getValue().intValue() >= n)
-                .map(e -> e.getKey().getValue() * e.getValue().intValue())
+                .map(e -> e.getKey().getValue() * n)
                 .sorted()
                 .findFirst()
                 .orElse(0);

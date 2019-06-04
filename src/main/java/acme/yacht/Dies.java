@@ -25,4 +25,41 @@ public class Dies {
                 .map(v -> Die.newStandardDie().setValue(v))
                 .collect(Collectors.toList());
     }
+
+    public static List<Integer> values(List<Die> dice) {
+        return dice.stream()
+                .map(Die::getValue)
+                .collect(Collectors.toList());
+    }
+
+    public static boolean containsValue(List<Die> dice, Integer dieValue) {
+        return dice.stream()
+                .map(Die::getValue)
+                .anyMatch(v -> v.equals(dieValue));
+    }
+
+    public static boolean containsExactly(List<Die> dice, List<Integer> dieValues) {
+        List<Integer> expectedValues = dieValues.stream()
+                .sorted()
+                .collect(Collectors.toList());
+
+        List<Integer> actualValues = values(dice).stream()
+                .sorted()
+                .collect(Collectors.toList());
+
+        return expectedValues.equals(actualValues);
+    }
+
+    public static Integer sum(List<Die> dice) {
+        return dice.stream()
+                .map(Die::getValue)
+                .reduce(0, Integer::sum);
+    }
+
+    public static Integer sumHavingDieValue(List<Die> dice, Integer dieValue) {
+        return dice.stream()
+                .map(Die::getValue)
+                .filter(v -> v.equals(dieValue))
+                .reduce(0, Integer::sum);
+    }
 }
