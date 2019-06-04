@@ -4,6 +4,10 @@
 
 This code is a subset of the functionality of Yacht. It provides an api to evaluate what options are available and the associated scores for a collection of dies.
 
+```
+  Yachts.options(List<Die> dice);
+```
+
 The RuleDefinitions class provides a good overview of the Yacht rules that are supported, how they are determined to be present, and how they are scored.
 
 
