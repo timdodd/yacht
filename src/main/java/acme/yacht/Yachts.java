@@ -17,7 +17,7 @@ public class Yachts {
                         .category(rule.getCategory())
                         .points(rule.getScoringFunction().apply(dice))
                         .build())
-                .sorted(Comparator.comparing(YachtResult::getPoints).reversed().thenComparing(YachtResult::getCategory))
+                .sorted()
                 .collect(Collectors.toList());
     }
 
